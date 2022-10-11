@@ -1,0 +1,107 @@
+#\DeclareLyXModule{Theorems (Numbered by Type within Sections)}
+#DescriptionBegin
+#Defines some theorem environments for use with non-AMS classes. Contrary to the
+#plain Theorem module, the different theorem types provided here each have a separate
+#counter (e.g., theorem 1, theorem 2, lemma 1, proposition 1, theorem 3, lemma 2, ...,
+#as opposed to theorem 1, theorem 2, lemma 3, proposition 4, ...). The numbering is reset
+#at each section start.
+#DescriptionEnd
+#Requires: theorems-bytype
+#Excludes: theorems-chap-bytype
+
+# Author: Paul Rubin <rubin@msu.edu> (hacked from Richard Heck's various modules)
+# Edited sep '22 by Udi Fogiel <udifoglle@gmail.com>
+
+
+Format 66
+
+# We need separate counters for each theorem-like style.
+Counter theorem
+	Within         section
+End
+Counter corollary
+	Within         section
+End
+Counter lemma
+	Within         section
+End
+Counter proposition
+	Within         section
+End
+Counter conjecture
+	Within         section
+End
+Counter fact
+	Within         section
+End
+Counter definition
+	Within         section
+End
+Counter example
+	Within         section
+End
+Counter problem
+	Within         section
+End
+Counter exercise
+	Within         section
+End
+Counter remark
+	Within         section
+End
+Counter claim
+	Within         section
+End
+
+Style Theorem
+	Preamble
+		\def\lyx@reverse@two#1#2{#2#1}
+		\def\lyx@plain{plain}
+		\def\lyx@definition{definition}
+		\def\lyx@remark{remark}
+		\newcommand\theoremstyle[1]{%
+			\def\lyx@style{#1}%
+			\ifx\lyx@style\lyx@plain
+				\def\lyx@headfont{\bfseries}%
+				\def\lyx@bodyfont{\itshape}%
+			\else
+				\ifx\lyx@style\lyx@definition
+					\def\lyx@headfont{\bfseries}%
+					\def\lyx@bodyfont{\upshape}%
+				\else
+					\ifx\lyx@style\lyx@remark
+						\def\lyx@headfont{\itshape}%
+						\def\lyx@bodyfont{\upshape}%
+					\fi
+				\fi
+			\fi
+		}
+		\def\@xthm#1#2{%
+			\@begintheorem{\normalfont\csname lyx@\@firstoftwo#2@headfont\endcsname \@secondoftwo#2}{\begingroup\upshape\csname the#1\endcsname\endgroup\hskip\z@\relax.}\normalfont\csname lyx@\@firstoftwo#2@bodyfont\endcsname\ignorespaces
+		}
+		\def\@ythm#1#2[#3]{%
+			\@opargbegintheorem{\normalfont{\csname lyx@\@firstoftwo#2@headfont\endcsname \@secondoftwo#2}}{\begingroup\csname lyx@\@firstoftwo#2@headfont\endcsname\upshape\csname the#1\endcsname\endgroup}{#3\lyx@reverse@two{\begingroup\normalfont\csname lyx@\@firstoftwo#2@headfont\endcsname.\endgroup}}\normalfont\csname lyx@\@firstoftwo#2@bodyfont\endcsname\ignorespaces
+		}
+		\def\lyx@othm#1[#2]#3{\@othm{#1}[#2]{{#1}{#3}}}
+		\def\lyx@nthm#1#2{\@ifnextchar[{\@xnthm{#1}{{#1}{#2}}}{\@ynthm{#1}{{#1}{#2}}}}
+		\renewcommand\newtheorem[1]{%
+			\expandafter\let\csname lyx@#1@headfont\expandafter\endcsname\lyx@headfont
+			\expandafter\let\csname lyx@#1@bodyfont\expandafter\endcsname\lyx@bodyfont
+			\@ifnextchar[{\lyx@othm{#1}}{\lyx@nthm{#1}}}
+		\newcommand\lyx@starred@newtheorem[2]{\newtheorem{#1}{#2}\expandafter\def\csname the#1\endcsname{\unskip}}
+		\newcommand\lyx@newtheorem{\@ifstar{\lyx@starred@newtheorem}{\lyx@reg@newtheorem}}
+		\theoremstyle{plain}
+		\ifcsname c@section\endcsname
+			\ifx\c@section\relax
+				\newcommand\lyx@reg@newtheorem[2]{\newtheorem{#1}{#2}}
+				\newtheorem{thm}{\protect\theoremname}
+			\else
+				\newcommand\lyx@reg@newtheorem[2]{\newtheorem{#1}{#2}[section]}
+				\newtheorem{thm}{\protect\theoremname}[section]
+			\fi
+		\else
+			\newcommand\lyx@reg@newtheorem[2]{\newtheorem{#1}{#2}}
+			\newtheorem{thm}{\protect\theoremname}
+		\fi
+	EndPreamble
+End

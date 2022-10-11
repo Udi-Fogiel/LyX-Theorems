@@ -1,0 +1,67 @@
+#% Do not delete the line below; configure depends on this
+#\DeclareLyXModule{Named Theorems}
+#DescriptionBegin
+# Facilitates the use of named theorems. The name of the theorem
+# goes into the 'Additional Theorem Text' argument.
+#DescriptionEnd
+#Original Author: John Perry
+#Edited by Udi Fogiel
+
+Format 66
+
+OutlinerName thm "Definitions & Theorems"
+
+Style "Named Theorem"
+	CopyStyle Theorem*
+	Category Reasoning
+	Margin                First_Dynamic
+	LabelType             Static
+	AddToToc              thm
+	IsTocCaption          0
+	LatexType             Environment
+	LabelString ""
+	LatexName namedthm
+	AddToToc              thm
+	Argument 1
+		LabelString   "Theorem Title"
+		Tooltip       "Theorem Title"
+		AutoInsert	1
+		IsTocCaption          1
+		PassThru		1
+	EndArgument
+	ParIndent             MMM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Left
+	Font
+		Shape               Italic
+		Size                Normal
+	EndFont
+	LabelFont
+		Shape               Up
+		Series              Bold
+	EndFont
+	Preamble
+		\newcommand\thmsname\namedthmname
+		\newtheorem*{namedtheorem}{\protect\thmsname}
+		\newenvironment{namedthm}[1][]{%
+			\if\relax\detokenize{#1}\relax
+				\begin{namedtheorem}
+			\else
+				\renewcommand\thmsname{#1}%
+				\begin{namedtheorem}%
+			\fi
+			}{\end{namedtheorem}}
+	EndPreamble
+	LangPreamble
+		\providecommand\namedthmname{_(Theorem)}
+	EndLangPreamble
+	BabelPreamble
+	  \addto\captions$$lang{\renewcommand{\namedthmname}{_(Theorem)}}
+	EndBabelPreamble
+	Requires              amsthm
+End

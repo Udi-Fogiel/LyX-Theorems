@@ -1,0 +1,35 @@
+#\DeclareLyXModule{Theorems (AMS)}
+#DescriptionBegin
+#Defines theorem environments and the proof environment using the extended 
+#AMS machinery. Both numbered and unnumbered types are provided. By default, 
+#the theorems are numbered consecutively throughout the document. This can be
+#changed by loading one of the 'Theorems (Numbered by ...)' modules.
+#DescriptionEnd
+#Excludes: theorems | theorems-bytype | theorems-ams-bytype
+#Category: theorems
+
+# Original Author : David L. Johnson <dlj0@lehigh.edu>
+# Probably broken by Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>
+# modified and modularized by Emmanuel GUREGHIAN <gureghia@boston.bertin.fr>
+# Tinkered with Sep. '07 by Paul Rubin <rubin@msu.edu>
+# Modularized Jan 08 by Richard Heck <rgheck@comcast.net>
+# Edited sep '22 by Udi Fogiel <udifoglle@gmail.com>
+
+
+Format 66
+
+Counter theorem
+End
+
+Input theorems-base.inc
+Input theorems-refprefix.inc
+Input theorems-case.inc
+Input theorems-proof.inc
+
+Style Theorem
+	Requires              amsthm
+End
+
+Style Theorem*
+	Requires              amsthm
+End
