@@ -1,0 +1,54 @@
+#\DeclareLyXModule{Theorems (Extended, Numbered by Type)}
+#DescriptionBegin
+#Defines some additional theorem environments for use with the
+#AMS theorems packages. Includes Criterion, Algorithm, Axiom,
+#Condition, Note, Notation, Summary, Acknowledgement, Conclusion,
+#Assumption, and Case, in both numbered and non-numbered forms.
+#Contrary to the plain Extended module, the different theorem 
+#types provided here each have a separate counter (e.g., criterion 1,
+#criterion 2, axiom 1, assumption 1, criterion 3, ...,
+#as opposed to criterion 1, criterion 2, axiom 3, assumption 4, ...).
+#DescriptionEnd
+#Requires: theorems-ams-bytype | theorems-bytype
+#Excludes: theorems-ams-chap-bytype | theorems-ams-sec-bytype
+
+
+# Original Author : David L. Johnson <dlj0@lehigh.edu>
+# Probably broken by Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>
+# modified and modularized by Emmanuel GUREGHIAN <gureghia@boston.bertin.fr>
+# Tinkered with Sep. '07 by Paul Rubin <rubin@msu.edu>
+# Modularized Jan 08 by Richard Heck <rgheck@comcast.net>
+# Hacked June '09 by Paul Rubin <rubin@msu.edu> to use separate counters
+# Edited sep '22 by Udi Fogiel <udifoglle@gmail.com>
+
+
+Format 66
+
+# We need separate counters for each theorem-like style.
+Counter criterion
+End
+Counter algorithm
+End
+Counter axiom
+End
+Counter condition
+End
+Counter note
+End
+Counter notation
+End
+Counter summary
+End
+Counter acknowledgement
+End
+Counter conclusion
+End
+Counter assumption
+End
+Counter question
+End
+
+
+Input theorems-extended.inc
+Input theorems-refprefix.inc
+Input theorems-labels.inc

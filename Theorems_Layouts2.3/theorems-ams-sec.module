@@ -1,0 +1,39 @@
+#\DeclareLyXModule{Theorems (AMS, Numbered by Section)}
+#DescriptionBegin
+#Defines theorem environments and the proof environment using the extended 
+#AMS machinery. Both numbered and unnumbered types are provided. Contrary to the
+#plain Theorem module, The numbering is reset at each section start.
+#DescriptionEnd
+#Requires: theorems-ams
+#Excludes: theorems-extended | theorems-ams-chap 
+
+# Original Author : Udi Fogiel <udifoglle@gmail.com>
+
+
+Format 66
+
+Counter theorem
+	Within         section
+End
+
+Input theorems-base.inc
+Input theorems-refprefix.inc
+Input theorems-case.inc
+Input theorems-proof.inc
+
+Style Theorem
+	Preamble
+		\newcommand\lyx@newtheorem{\@ifstar{\newtheorem*}{\lyx@reg@newtheorem}}
+		\newcommand\lyx@reg@newtheorem[2]{\newtheorem{#1}[thm]{#2}}
+		\theoremstyle{plain}
+		\ifcsname c@chapter\endcsname
+			\ifx\c@chapter\relax
+				\newtheorem{thm}{\protect\theoremname}
+			\else
+				\newtheorem{thm}{\protect\theoremname}[section]
+			\fi
+		\else
+			\newtheorem{thm}{\protect\theoremname}
+		\fi
+	EndPreamble
+End

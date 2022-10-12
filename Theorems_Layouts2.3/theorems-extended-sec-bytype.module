@@ -1,0 +1,80 @@
+#\DeclareLyXModule{Theorems (Extended, Numbered by Type within Sections)}
+#DescriptionBegin
+#Defines some additional theorem environments for use with the
+#theorems packages. Includes Criterion, Algorithm, Axiom,
+#Condition, Note, Notation, Summary, Acknowledgement, Conclusion,
+#Assumption, and Case, in both numbered and non-numbered forms.
+#Contrary to the plain Theorem module, the different 
+#theorem types provided here each have a separate
+#counter (e.g., theorem 1, theorem 2, lemma 1, proposition 1, theorem 3, lemma 2, ...,
+#as opposed to theorem 1, theorem 2, lemma 3, proposition 4, ...). The numbering is reset
+#at each section start.#DescriptionEnd
+#Requires: theorems-ams-sec-bytype | theorems-sec-bytype
+
+# Original Author : Udi Fogiel <udifoglle@gmail.com>
+
+
+Format 66
+
+
+# The environnements defined (regular and starred) are :
+# - Criterion
+# - Algorithm
+# - Axiom
+# - Condition
+# - Note
+# - Notation
+# - Summary
+# - Acknowledgement
+# - Conclusion
+# - Assumption
+# - Question
+
+# We need separate counters for each theorem-like style.
+Counter criterion
+	Within         section
+End
+Counter algorithm
+	Within         section
+End
+Counter axiom
+	Within         section
+End
+Counter condition
+	Within         section
+End
+Counter algorithm
+	Within         section
+End
+Counter axiom
+	Within         section
+End
+Counter condition
+	Within         section
+End
+Counter note
+	Within         section
+End
+Counter notation
+	Within         section
+End
+Counter summary
+	Within         section
+End
+Counter acknowledgement
+	Within         section
+End
+Counter conclusion
+	Within         section
+End
+Counter assumption
+	Within         section
+End
+Counter question
+	Within         section
+End
+
+
+Input theorems-extended.inc
+Input theorems-refprefix.inc
+Input theorems-labels.inc

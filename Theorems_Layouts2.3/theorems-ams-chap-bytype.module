@@ -9,7 +9,7 @@
 #theorem 2.1, ...
 #DescriptionEnd
 #Requires: theorems-ams-bytype
-#Excludes: theorems-ams-extended-bytype
+#Excludes: theorems-extended-bytype | theorems-ams-sec-bytype
 
 # Original Author : David L. Johnson <dlj0@lehigh.edu>
 # Probably broken by Jean-Marc Lasgouttes <Jean-Marc.Lasgouttes@inria.fr>
