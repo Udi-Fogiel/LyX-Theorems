@@ -26,8 +26,8 @@ Style Theorem
 		\newcommand\lyx@newtheorem{\@ifstar{\newtheorem*}{\lyx@reg@newtheorem}}
 		\newcommand\lyx@reg@newtheorem[2]{\newtheorem{#1}[thm]{#2}}
 		\theoremstyle{plain}
-		\ifcsname c@chapter\endcsname
-			\ifx\c@chapter\relax
+		\ifcsname c@section\endcsname
+			\ifx\c@section\relax
 				\newtheorem{thm}{\protect\theoremname}
 			\else
 				\newtheorem{thm}{\protect\theoremname}[section]
